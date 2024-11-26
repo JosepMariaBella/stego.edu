@@ -32,7 +32,7 @@ Añadimos una ruta a StegoA para poder enviar corréctamente los paquetes:
 ```bash
 sudo ip route add 172.20.121.0/24 via 172.20.120.254
 ```
-Para poder enviar usaremos el código [helloWorldICMP.py](src/helloWorldICMP.py)
+Para poder enviar usaremos el código [helloWorldICMP.py](../src/helloWorldICMP.py)
 
 En la màquina receptora, fem el mateix que stegoA, però ara posem aquest codi.
 
