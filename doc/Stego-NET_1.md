@@ -1,61 +1,38 @@
-# Estegoanalisis
+# Actividad: Hello World!
 
-L'estegoanalisis és la capacitat de dos dispositius d'enviar-se informació sense ser detectats. No només es tracta que cap intercepto pugui conèixer el missatge que s'envia, sinó que es tracta que ningú sigui conscient que s'ha arribat a enviar un missatge. 
+En esta primera actividad nos vamos a centrar básicamente en la configuración de nuestras máquinas el envío de paquetes a través de la librería *scapy*. 
 
-L'objectiu d'ocultar comunicacions poden ser variades, però els més comuns tenen relació amb la intel·igència, però també podem trobar altres usos, com per exemple, poder posar comunicacions segures dins de les nostres aplicacions.
+Para ello, vamos a seguir el siguiente esquema:
 
------
+$$Ubuntu Server StegoA \longleftrightarrow Ubuntu Server Router IDS/IPS \longleftrightarrow Ubuntu Desktop StegoB$$
 
-Posar teoria del lliber
+El objetivo es modificar enviar paquetes ICMP modificando el Payload.
 
-----
+Para ello, empezamos configurando nuestra Ubuntu Server inicial:
 
-## El primer missatge
+```bash
+sudo nano /etc/netplan/50-cloud-init.yaml
+sudo nano /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+sudo nano /etc/netplan/50-cloud-init.yaml
+sudo netplan apply
 
-Amb aquest primer missatge, sobretot el que treballarem és en la creació de l'entorn de proves. En el nostre cas, crearem tres màquines ubuntu Server, dues que realitzaran les comunicacions entre elles, i la tercera, un router que obligarà a passar la comunicació per un tercer.
+sudo apt install python3-venv
+sudo apt install python3-pip
+root <<<<----- Tot amb root!!!!
+python3 -m venv stego
+source stego/bin/activate    --- deactivate
 
-Per preparar la màquina del emissor stegoA:
-
-```python
-    1  sudo nano /etc/netplan/50-cloud-init.yaml
-    2  sudo nano /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
-    3  sudo nano /etc/netplan/50-cloud-init.yaml
-    4  sudo netplan apply
-
-   10  sudo apt install python3-venv
-   11  sudo apt install python3-pip
-    su root <<<<----- Tot amb root!!!!
-   12  python3 -m venv stego
-   13  source stego/bin/activate    --- deactivate
 $> pip install -r requirements.txt
 $> pip freeze > requeriments.txt
 pip list
-        pip3 install scapy --break-system-packages
 
-   14  ls
-   15  pip list
-   16  history
-
-
-Tard o d'hora ->pip3 install scapy NetfilterQueue
+pip3 install scapy netfilterqueue    // --break-system-packages
 ```
-
-Primer enviament:
-
-```python
-from scapy.all import *
-
-dest = "172.20.121.11"
-paquet = IP(dst=dest) / ICMP() / "hello world"
-
-send(paquet)
-```
-
-La stego a l'externa necessita un ip route cap a la interna
-
+Añadimos una ruta a StegoA para poder enviar corréctamente los paquetes:
 ```bash
 sudo ip route add 172.20.121.0/24 via 172.20.120.254
 ```
+Para poder enviar usaremos el código [helloWorldICMP.py](src/helloWorldICMP.py)
 
 En la màquina receptora, fem el mateix que stegoA, però ara posem aquest codi.
 
