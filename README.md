@@ -7,7 +7,7 @@ Así pues, la capacidad principal de la esteganografia no es mantener un secreto
 A la hora de poder crear un comunicación esteganográfica es imprescindible tener presente, el canal (chanel) por el que se transmitirá la información, el contenedor (cover) donde insertaremos (embed) las comunicaciones ocultas, y las funciones de *embeded* y extracción del mensaje.
 
 <picture>
- <img alt="Esquema básico de esteganografia." src="scheme_stego.png">
+ <img alt="Esquema básico de esteganografia." src="docs/images/scheme_stego.png">
 </picture>
 
 ### Vocabulario básico
