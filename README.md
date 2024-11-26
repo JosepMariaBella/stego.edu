@@ -10,7 +10,7 @@ A l'hora de preparar l'esquema de l'esteganografia, cal tenir present el canal d
 LSB és un dels algoritmes més simples.
 
 <picture>
- <img alt="Esquema básico de esteganografia." src="scheme_stego.png"
+ <img alt="Esquema básico de esteganografia." src="scheme_stego.png">
 </picture>
 
 
