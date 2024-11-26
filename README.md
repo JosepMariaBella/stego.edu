@@ -2,16 +2,43 @@
 
 La esteganografia es la práctica por la cual, emisor y receptor, son capaces de comunicarse sin que otro interlocturo sea capaz de interceptarlos. Para conseguirlo, se requiere esconder el mensaje dentro de comunicaciones fiables.
 
+Así pues, la capacidad principal de la esteganografia no es mantener un secreto com podria ser la encriptación, sino que el objetivo es la indetectibilidad por un tercero, se trata que ningún tercero sea capaz de saber ni si quiera que está habiendo una comunicación entre dos pares. Por otro lado, el estegoanalisis es la parte que se encarga de detectar si hay comunicaciones ocultes en nuestra red.
 
-Així doncs, la capacitat principal de la esteganografia no és el secret, sinó la indetectabilitat per part de tercers, es tracta que no hi puguin haver algoritmes que et descobreixin. L'estegoanàlisis és la pràctica que treballa aquests algoritmes i tracta de detectar si hi ha comunicacions secretes entre emissor i receptor.
-
-A l'hora de preparar l'esquema de l'esteganografia, cal tenir present el canal de comunicació, l'embolcall, i les funcions d'inserció i extracció.  El nostre objectiu pricnipal és que sigui estadísticament indetectable.
-
-LSB és un dels algoritmes més simples.
+A la hora de poder crear un comunicación esteganográfica es imprescindible tener presente, el canal (chanel) por el que se transmitirá la información, el contenedor (cover) donde insertaremos (embed) las comunicaciones ocultas, y las funciones de incrustación y extracción del mensaje.
 
 <picture>
  <img alt="Esquema básico de esteganografia." src="scheme_stego.png">
 </picture>
+
+## Vocabulario básico
+
+Channel -> canal, medio.
+
+Warden -> Vigilante, forma parte del channel. Es quien intentará capturar nuestros mensajes ocultos, puede ser de carácter pasivo, si no modifica el mensaje, activo, intenta destruir cualquier mensajes incrustado, y malicioso, intenta modificar los mensajes enviados para hacerlos prisioneros.
+
+Cover Work -> contenedor inicial
+
+Stego Work -> contenedor con mensaje oculto.
+
+### Channel
+
+**Stego by cover lookup**: Volem enviar 10 bits, tenim 10000 cançons, faig hashesh fins que em trobi el hash que comenci per aquests 10 bits, i llavors, envio aquesta cançó. No hem provocat cap modificació. Només haurem de comunicar d'alguna manera quina cançó és, i tenir present, que si necessitem enviar més bits, necessitarem moltes més cançons:
+
+`Nombre de cançons amb hashesh diferents = (bits a enviar ^ 2) mínim`
+
+**Stego by cover synthesis**: Es tracta d'un treball amb diverses converses, el emissor seleccionar les línies que vols, i aquest és el missatge enviat. II WW - llibre "Between Silk and Cyanide" i codi "Windswept", british spies. També teim **el programa SpamMimmi* http://www.spammimic.com, codifica un missatge reendreçant missatges spam, ja que la falta de ortografia i gramàtica dels correus spam, permet més modificacions. Un altre exemple és el *data masking*, creen un missatge estadísticament similar a algú, per exemple una cançó, mentre ningú escolti la cançó, ningú es donarà compte.
+
+**Stego by cover modifications**: És quan l'emissor altera un *cover* per obtenir incrustar un missatge codificat. Quan menys modifiquem, més difícil serà de detectar. Tenim tres tipus de regles per modificar:
+
+- Sequential rule- incrusta els bits de forma seqüencial en una imatge, començant per la fila tal i anant per les columnes.... més fàcil d'implementar i detectar. (13.2.1)
+
+- Pseudo-random rule, creem una regla pseudoaleatòria (PRNG) per anar incrustant en el lloc que toqui. .
+
+- Adaptative selection rule : Va incrustant els bits, segons l'origen de la obra
+
+
+
+
 
 
 
@@ -27,15 +54,7 @@ LSB és un dels algoritmes més simples.
 
 
 
-## Vocabulari
 
-Channel -> canal, mitjà.
-
-Warden -> Vigilant, forma part del channel. Pot ser passiu (si no modifica la comunicació), actiu (modifica el contingut per destruir possibles missatges interns). Maliciós, modifica el contingut per convertir receptor i emissor en presoners. Impersonificació.
-
-Cover Work -> embolcall inicial
-
-Com a stego, hem de tenir present:
 
 
 
@@ -53,21 +72,7 @@ Com a stego, hem de tenir present:
 
 
 
-### Channel
 
-**Stego by cover lookup**: Volem enviar 10 bits, tenim 10000 cançons, faig hashesh fins que em trobi el hash que comenci per aquests 10 bits, i llavors, envio aquesta cançó. No hem provocat cap modificació. Només haurem de comunicar d'alguna manera quina cançó és, i tenir present, que si necessitem enviar més bits, necessitarem moltes més cançons:
-
-`Nombre de cançons amb hashesh diferents = (bits a enviar ^ 2) mínim`
-
-**Stego by cover synthesis**: Es tracta d'un treball amb diverses converses, el emissor seleccionar les línies que vols, i aquest és el missatge enviat. II WW - llibre "Between Silk and Cyanide" i codi "Windswept", british spies. També teim **el programa SpamMimmi* http://www.spammimic.com, codifica un missatge reendreçant missatges spam, ja que la falta de ortografia i gramàtica dels correus spam, permet més modificacions. Un altre exemple és el *data masking*, creen un missatge estadísticament similar a algú, per exemple una cançó, mentre ningú escolti la cançó, ningú es donarà compte.
-
-**Stego by cover modifications**: És quan l'emissor altera un *cover* per obtenir incrustar un missatge codificat. Quan menys modifiquem, més difícil serà de detectar. Tenim tres tipus de regles per modificar:
-
-- Sequential rule- incrusta els bits de forma seqüencial en una imatge, començant per la fila tal i anant per les columnes.... més fàcil d'implementar i detectar. (13.2.1)
-
-- Pseudo-random rule, creem una regla pseudoaleatòria (PRNG) per anar incrustant en el lloc que toqui. .
-
-- Adaptative selection rule : Va incrustant els bits, segons l'origen de la obra
 
 ### Key stego
 
