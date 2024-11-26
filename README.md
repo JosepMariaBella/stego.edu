@@ -40,6 +40,7 @@ La incrustación de nuestro mensaje en el *cover* y su modificación genera la s
 
 ```math
 Embeded: C \times K \times M \rightarrow S
+
 Extraction: S \rightarrow M
 ```
 Donde *C* es el conjunt de *covers*, *K* es la clave con la que encriptamos el mensaje, *M* es el mensaje que queremos ocultar, y *S* es el resultado de la incrustación del mensaje en el *cover*.
