@@ -4,7 +4,7 @@ La esteganografia es la práctica por la cual, emisor y receptor, son capaces de
 
 Así pues, la capacidad principal de la esteganografia no es mantener un secreto com podria ser la encriptación, sino que el objetivo es la indetectibilidad por un tercero, se trata que ningún tercero sea capaz de saber ni si quiera que está habiendo una comunicación entre dos pares. Por otro lado, el estegoanalisis es la parte que se encarga de detectar si hay comunicaciones ocultes en nuestra red.
 
-A la hora de poder crear un comunicación esteganográfica es imprescindible tener presente, el canal (chanel) por el que se transmitirá la información, el contenedor (cover) donde insertaremos (embed) las comunicaciones ocultas, y las funciones de incrustación y extracción del mensaje.
+A la hora de poder crear un comunicación esteganográfica es imprescindible tener presente, el canal (chanel) por el que se transmitirá la información, el contenedor (cover) donde insertaremos (embed) las comunicaciones ocultas, y las funciones de *embeded* y extracción del mensaje.
 
 <picture>
  <img alt="Esquema básico de esteganografia." src="scheme_stego.png">
@@ -34,90 +34,20 @@ y receptor compartan el *pattern*
 - Pseudo-random rule, craemos un *pattern* como si fuera una regla pseudoaleatòria (PRNG) y vamos incrustando siguiendo el patrón establecido.
 - Adaptative selection rule: Es una buena opción, ya que adapta la inserción según el origen del cover. No se trata de saber donde está el bit en cuestión, sino de analizar el origen y decidir donde ponerlo según las características del cover. Por ejemplo, en una imagen no incrustaremos bits en fotos completamente negras, sino que buscaremos fotos con muchos contrastes, y dentro de estos contrastes, nos será más fàcil modificar el bit sin que se pueda percibir. 
 
+## Embeded and extraction functions
+
+La incrustación de nuestro mensaje en el *cover* y su modificación genera la siguiente notificación científica:
+
+```math
+Embeded: C \times K \times M \rightarrow S
+Extraction: S \rightarrow M
+```
+Donde *C* es el conjunt de *covers*, *K* es la clave con la que encriptamos el mensaje, *M* es el mensaje que queremos ocultar, y *S* es el resultado de la incrustación del mensaje en el *cover*.
+
+Teniendo en cuenta las dos últimas fórmulas, debemos siempre tener en cuenta:
+
+*Embedding capacity*: És la capacitat total que tenemos para incrustar un mensaje, se mide en bits.
+
+*Impact of embedding (or embedding distortion)*: Calcula la distancia entre *C* y *S*, se calcula bit a bit, cuanta mejor sea la *embedding efficiency* menor será el impacto, pero también será menor la cantidad de información total.
 
 
-
-
-
-
-12.1 - Issues
-
-12.2 - terminologia bàsica
-
-12.3 - evaluació secure LSB - teòric
-
-12.4 - Practical stego schemes
-
-12.5 - embedding proces
-
-
-
-
-
-
-
-1. Escollir l'embolcall
-
-2. Crear els algoritmes d'inserció i extracció, que han de tenir:
-
-   1. Simbol assignment function
-
-   2. The embedding modification
-
-   3. The selection rule
-
-3. Stego key management
-
-
-
-
-
-### Key stego
-
-L'objectiu de tenir una regla que fa que les adaptacions i les pseudo vagin variant.
-
-També interessant les claus de sessió.
-
-Però també ens pot ajudar a encriptar els missatges
-
-
-
-## Notation and terminology
-
-Embeded: `C x K x M -> C`
-
-Extraction: `C -> M`
-
-*K$s$* : És la stego key extreta d'un conjunt de possibles claus *K*.
-
-*M* : El conjunt de missatges possibles a incrustar. *m* el missatge escollit.
-
-*C* : El conjunt de tots els treballs originals. *c* el treball original escollit.
-
-The work *s* = *Emb*(c, K$s$, m)
-
-*Embedding capacity*: És la capacitat total que tenim per incrustar un missatge, es mesura en bits, és log$2$ |M|. Tinc 6 bits, puc fer 64 combinacions diferents de missatges a poder enviar. (2^6 = 64)
-
-*Impact of embedding (or embedding distortion)*:  Es mesura com D(c,s), on D és la distàcnia definida a C. Intenta calcular la diferència entre l'original i el missatge a través de l'error quadràtic mig. Pixel a pixel, es calcula el quadrat de la seva diferència i es fa la mitjana. Quants més pixels poguem posar, més impactarà, però també millorarà la seva *embedding efficiency*.
-
-
-
-
-
-
-
-
-
-
-
-# Estegoanalisis
-
-L'estegoanalisis és la capacitat de dos dispositius d'enviar-se informació sense ser detectats. No només es tracta que cap intercepto pugui conèixer el missatge que s'envia, sinó que es tracta que ningú sigui conscient que s'ha arribat a enviar un missatge.
-
-L'objectiu d'ocultar comunicacions poden ser variades, però els més comuns tenen relació amb la intel·igència, però també podem trobar altres usos, com per exemple, poder posar comunicacions segures dins de les nostres aplicacions.
-
------
-
-Posar teoria del lliber
-
-----
