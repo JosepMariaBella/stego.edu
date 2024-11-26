@@ -22,6 +22,7 @@ root <<<<----- Todo amb root!!!!
 python3 -m venv stego
 source stego/bin/activate    --- deactivate
 
+# sudo  apt-get install build-essential python3-dev libnetfilter-queue-dev
 $> pip install -r requirements.txt
 $> pip freeze > requeriments.txt
 pip list
