@@ -34,45 +34,13 @@ sudo ip route add 172.20.121.0/24 via 172.20.120.254
 ```
 Para poder enviar usaremos el código [helloWorldICMP.py](../src/helloWorldICMP.py)
 
-En la màquina receptora, fem el mateix que stegoA, però ara posem aquest codi.
+En la màquina receptora, podemos ver el resultado a través de Wireshark.
 
-```python
-from scapy.all import sniff, ICMP
-
-# Define a callback function that processes each packet
-def icmp_packet_callback(packet):
-    if packet.haslayer(ICMP):
-        # Get the payload of the ICMP packet
-        icmp_payload = packet[ICMP].payload.load if packet[ICMP].payload else b''
-
-        if icmp_payload:
-            print(f"ICMP packet payload: {icmp_payload.decode(errors='ignore')}")  # Decode payload as string
-
-# Capture ICMP packets (use appropriate interface or adjust filter)
-sniff(filter="icmp", prn=icmp_packet_callback, store=0)
-```
+## Creación del Router con una Ubuntu Server
 
 Per crear la màquina router:
 
-# UFW
-
-[](https://gist.github.com/kimus/9315140#ufw)
-
-I use Ubuntu’s Uncomplicated firewall because it is available on Ubuntu and it's very simple.
-
-## Install UFW
-
-[](https://gist.github.com/kimus/9315140#install-ufw)
-
-if ufw is not installed by default be sure to install it first.
-
-```
-$ sudo apt-get install ufw
-```
-
-## NAT
-
-[](https://gist.github.com/kimus/9315140#nat)
+## UFW
 
 If you needed ufw to NAT the connections from the external interface to the internal the solution is pretty straight forward. In the file /etc/default/ufw change the parameter DEFAULT_FORWARD_POLICY
 
@@ -132,7 +100,7 @@ For port forwardind just do something like this.
 COMMIT
 ```
 
-## Instal·lació Suricata
+## Instal·lación Suricata
 
 ```bash
 sudo add-apt-repository ppa:oisf/suricata-stable
