@@ -10,8 +10,10 @@ A l'hora de preparar l'esquema de l'esteganografia, cal tenir present el canal d
 LSB és un dels algoritmes més simples.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="[https://user-images.githubusercontent.com/25423296/163456776-7f95b81a-f1ed-45f7-b7ab-8fa810d529fa.png](https://raw.githubusercontent.com/JosepMariaBella/stego.edu/refs/heads/main/scheme_stego.png)">
+ <img alt="Esquema básico de esteganografia." src="scheme_stego.png"
 </picture>
+
+
 
 12.1 - Issues
 
