@@ -21,7 +21,7 @@ LSB és un dels algoritmes més simples.
 
 12.5 - embedding proces
 
-![scheme_stego.png](C:\Users\jmbel\OneDrive\Training-B\Stego\scheme_stego.png)
+[scheme_stego.png]
 
 ## Vocabulari
 
