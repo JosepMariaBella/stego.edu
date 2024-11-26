@@ -1,6 +1,8 @@
 from scapy.all import  *
 from netfilterqueue import NetfilterQueue
 
+
+# UFW: -A ufw-before-output -o enp0s3 -p icmp -j NFQUEUE --queue-num 1
 def process_packet(pkt):
     # Convierte el paquete nfqueue a un objeto Scapy
     scapy_packet = IP(pkt.get_payload())
